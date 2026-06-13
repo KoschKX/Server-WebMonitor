@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Monitor</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js for real-time data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- CPU Monitoring Section -->
+    <section class="monitor-section" id="section-cpu">
+        <div class="section-header" onclick="toggleSection('section-cpu')">
+            <span class="arrow" id="arrow-cpu">▾</span>
+            <span>CPU</span>
+        </div>
+        <div class="section-content" id="content-cpu">
+            <div class="chart-wrap">
+                <canvas id="cpuChart"></canvas>
+            </div>
+            <div class="cpu-legend" id="cpuLegend"></div>
+        </div>
+    </section>
+
+    <!-- Memory and Swap Monitoring Section -->
+    <section class="monitor-section" id="section-memory">
+        <div class="section-header" onclick="toggleSection('section-memory')">
+            <span class="arrow" id="arrow-memory">▾</span>
+            <span>Memory and Swap</span>
+        </div>
+        <div class="section-content" id="content-memory">
+            <div class="chart-wrap">
+                <canvas id="memoryChart"></canvas>
+            </div>
+            <div class="stats-row">
+                <div class="stat-block">
+                    <span class="color-dot" style="color:#e84040; font-size:22px;">■</span>
+                    <div class="stat-info">
+                        <div class="stat-title">Memory</div>
+                        <div id="memoryInfo">— GB (—%) of — GB</div>
+                        <div id="memoryCacheInfo">Cache — GB</div>
+                    </div>
+                </div>
+                <div class="stat-block">
+                    <span class="color-dot" style="color:#40c880;">●</span>
+                    <div class="stat-info">
+                        <div class="stat-title">Swap</div>
+                        <div id="swapInfo">— bytes (—%) of — GB</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Network Monitoring Section -->
+    <section class="monitor-section" id="section-network">
+        <div class="section-header" onclick="toggleSection('section-network')">
+            <span class="arrow" id="arrow-network">▾</span>
+            <span>Network</span>
+        </div>
+        <div class="section-content" id="content-network">
+            <div class="chart-wrap">
+                <canvas id="networkChart"></canvas>
+            </div>
+            <div class="stats-row">
+                <div class="stat-block">
+                    <span class="direction-arrow" style="color:#4080c8;">⬇</span>
+                    <div class="stat-info">
+                        <div><span class="stat-label">Receiving</span><span id="netRxRate">0 bytes/s</span></div>
+                        <div><span class="stat-label">Total Received</span><span id="netRxTotal">0 B</span></div>
+                    </div>
+                </div>
+                <div class="stat-block">
+                    <span class="direction-arrow" style="color:#e88040;">⬆</span>
+                    <div class="stat-info">
+                        <div><span class="stat-label">Sending</span><span id="netTxRate">0 bytes/s</span></div>
+                        <div><span class="stat-label">Total Sent</span><span id="netTxTotal">0 B</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disk I/O Monitoring Section -->
+    <section class="monitor-section" id="section-disk">
+        <div class="section-header" onclick="toggleSection('section-disk')">
+            <span class="arrow" id="arrow-disk">▾</span>
+            <span>Disk</span>
+        </div>
+        <div class="section-content" id="content-disk">
+            <div class="chart-wrap">
+                <canvas id="diskChart"></canvas>
+            </div>
+            <div class="stats-row">
+                <div class="stat-block">
+                    <span class="direction-arrow" style="color:#4080c8;">⬆</span>
+                    <div class="stat-info">
+                        <div><span class="stat-label">Reading</span><span id="diskReadRate">0 bytes/s</span></div>
+                        <div><span class="stat-label">Total Read</span><span id="diskReadTotal">0 B</span></div>
+                    </div>
+                </div>
+                <div class="stat-block">
+                    <span class="direction-arrow" style="color:#e88040;">⬇</span>
+                    <div class="stat-info">
+                        <div><span class="stat-label">Writing</span><span id="diskWriteRate">0 bytes/s</span></div>
+                        <div><span class="stat-label">Total Written</span><span id="diskWriteTotal">0 B</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
